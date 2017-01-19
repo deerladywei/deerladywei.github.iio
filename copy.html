@@ -3,9 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>360</title>
-	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/copy.css">
 </head>
 <body>
+	<!-- 全屏 -->
 	<div id="fullpage">
 		<!-- 第一屏 -->
 		<div class="section first">
@@ -22,8 +23,8 @@
 				<img src="./images/text_7.png" alt="">
 				<img src="./images/text_8.png" alt="">
 			</div>
-			<!-- 信息 -->
-			<div class="info"></div>
+			<!-- 其它 -->
+			<div class="extra"></div>
 		</div>
 		<!-- 第二屏 -->
 		<div class="section second">
@@ -39,14 +40,14 @@
 				<img src="./images/shield_8.png" alt="">
 				<img src="./images/shield_9.png" alt="">
 			</div>
-			<!-- 信息 -->
-			<div class="info"></div>
+			<!-- 其它信息 -->
+			<div class="extra"></div>
 		</div>
 		<!-- 第三屏 -->
 		<div class="section third">
-			<!-- 信息 -->
-			<div class="info"></div>
-			<!-- 圆环 -->
+			<!-- 其它信息 -->
+			<div class="extra"></div>
+			<!-- 圆 -->
 			<div class="circle"></div>
 			<!-- 火箭 -->
 			<div class="rocket"></div>
@@ -55,53 +56,66 @@
 		<div class="section fourth">
 			<!-- 搜索 -->
 			<div class="search">
-				<div class="key"></div>
-				<div class="input"></div>
-				<div class="wrap">
-					<div class="result"></div>
+				<!-- 搜索框 -->
+				<div class="bar"></div>
+				<!-- 关建字 -->
+				<div class="keys"></div>
+				<!-- 结果 -->
+				<div class="result">
+					<img src="./images/result.png" alt="">
 				</div>
 			</div>
-			<!-- 信息 -->
-			<div class="info"></div>
+			<!-- 其它信息 -->
+			<div class="extra"></div>
 		</div>
 		<!-- 第五屏 -->
 		<div class="section fifth">
-			<!-- 信息 -->
-			<div class="info"></div>
-			<!-- 浏览器 -->
-			<div class="broswer">
+			<!-- 其它 -->
+			<div class="extra"></div>
+			<div class="browser">
 				<!-- 四边框 -->
-				<div class="leftline"></div>
-				<div class="topline"></div>
-				<div class="rightline"></div>
-				<div class="bottomline"></div>
+				<div class="line lineleft"></div>
+				<div class="line linetop"></div>
+				<div class="line lineright"></div>
+				<div class="line linebottom"></div>
 				<!-- 工具栏 -->
 				<div class="toolbar"></div>
-				<!-- 边框盒子 -->
-				<div class="box">
-					<span></span>
+				<div class="border-box">
+					<div class="border"></div>
 				</div>
-				<div class="line"></div>
-				<!-- 其它 -->
-				<div class="extra"></div>
+				<!-- 任务栏 -->
+				<div class="line5"></div>
+				<div class="taskbar"></div>
 			</div>
 		</div>
 	</div>
+
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/jquery.fullPage.min.js"></script>
 	<script>
+		// 全屏插件对HTML结构有一定要求
+		// 应用插件后会对原来DOM结构进行修改
+		// 修改的目的是为了功能的实现方便
 		$('#fullpage').fullpage({
-			// 设置背景色
-			sectionsColor : ['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+			sectionsColor : ['#0DA5D6', '#2AB561','#DE8910', '#16BA9D', '#0DA5D6'],
+			// 当滚动一屏后会触发
 			afterLoad: function (anchorLink, index) {
+				console.log(index, anchorLink);
+
+				// 清空所有区块的特殊类名
 				$('.section').removeClass('current');
-				
-				// 延时100毫秒执行
+
+				// 为每一屏添加特殊的类名
+				// 此类名用定义过渡样式
+
+				// 设置延时为了给浏览器反应时间
 				setTimeout(function () {
+					// 
 					$('.section').eq(index - 1).addClass('current');
-				}, 100);
+				}, 50);
 			}
 		});
+
 	</script>
 </body>
 </html>
